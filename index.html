@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SHIOKAZE — SVCURA</title>
+<meta name="theme-color" content="#eef0ee">
+<meta name="color-scheme" content="light">
+<meta name="description" content="shiokaze — digital creator. quiet interfaces, motion, sound.">
+<link rel="canonical" href="https://shiokazee.github.io/bio/">
+<link rel="icon" href="assets/favicon.jpg" type="image/jpeg">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="SHIOKAZE — SVCURA">
+<meta property="og:description" content="digital creator · web / motion / sound">
+<meta property="og:image" content="https://shiokazee.github.io/bio/bg.jpg">
+<meta property="og:url" content="https://shiokazee.github.io/bio/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="entry-locked">
+<div id="stage">
+  <div id="entry-screen" role="dialog" aria-label="Continue to site">
+    <button class="entry-btn" id="entry-btn" type="button" aria-label="Enter site"></button>
+    <div class="entry-line" aria-hidden="true"></div>
+    <div class="entry-center">
+      <div class="entry-kicker">SVCURA / PERSONAL TRANSMISSION</div>
+      <div class="entry-title">CONTINUE</div>
+      <div class="entry-hint"><span class="hint-desktop">PRESS ANY KEY</span><span class="hint-mobile">TAP ANYWHERE</span></div>
+      <div class="entry-progress" aria-hidden="true"><span id="entry-progress-bar"></span></div>
+    </div>
+    <div class="entry-corner">AUDIO 015% · SIGNAL READY</div>
+  </div>
+
+  <img id="bg-image" src="assets/bg.jpg" alt="" aria-hidden="true">
+  <div id="bg-overlay" aria-hidden="true"></div>
+
+  <button id="console-trigger" type="button" title="Open terminal (~)" aria-label="Open terminal">~</button>
+
+  <main id="ui" aria-label="Shiokaze personal interface">
+
+    <div class="top-grid">
+      <!-- ---------------------------------------------------------- profile -->
+      <section class="card profile" id="profile" aria-label="Profile">
+        <img class="profile-banner" src="assets/bg.jpg" alt="" aria-hidden="true">
+        <div class="profile-meta">
+          <span class="meta-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>
+            </svg>
+            <span id="tz">—</span><span id="clock">00:00:00</span>
+          </span>
+        </div>
+
+        <img class="profile-avatar" src="assets/avatar.jpg" alt="shiokaze avatar">
+
+        <h1 class="profile-name">shiokaze</h1>
+        <div class="profile-sub">digital creator · web / motion / sound</div>
+        <div class="profile-author"><span>author</span><strong>svcura</strong></div>
+
+        <div class="presence">
+          <span class="status-dot" id="dc-status" aria-hidden="true"></span>
+          <span class="dc-name" id="dc-name">shiokaze</span>
+          <span class="dc-online" id="dc-activity">checking presence…</span>
+        </div>
+
+        <div class="profile-foot">
+          <div class="mini-stats">
+            <span>views <b id="visit-count">—</b></span>
+            <span>rating <b id="rating-value">—</b></span>
+          </div>
+          <div class="rating-stars" id="rating-stars" role="radiogroup" aria-label="Rate this site">
+            <button type="button" data-rating="1" role="radio" aria-checked="false" aria-label="1 star">★</button>
+            <button type="button" data-rating="2" role="radio" aria-checked="false" aria-label="2 stars">★</button>
+            <button type="button" data-rating="3" role="radio" aria-checked="false" aria-label="3 stars">★</button>
+            <button type="button" data-rating="4" role="radio" aria-checked="false" aria-label="4 stars">★</button>
+            <button type="button" data-rating="5" role="radio" aria-checked="false" aria-label="5 stars">★</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ------------------------------------------------------ now playing -->
+      <div class="player-cell">
+        <section class="card player" id="music-card" aria-label="Last played">
+          <span class="player-watermark" id="player-watermark" aria-hidden="true">last.fm</span>
+          <div class="player-head">
+            <span class="title" id="music-title">last played</span>
+            <span class="np-dot" id="np-dot" aria-hidden="true"></span>
+          </div>
+          <div class="player-body">
+            <div class="album" id="album-tile" aria-hidden="true"></div>
+            <div class="track">
+              <h2 id="track-title">—</h2>
+              <p id="track-meta">connecting to last.fm…</p>
+              <p class="album-line" id="track-album"></p>
+            </div>
+            <div class="player-actions">
+              <div class="eq" aria-hidden="true"><i style="--s:.7"></i><i style="--s:1"></i><i style="--s:.55"></i><i style="--s:1.15"></i><i style="--s:.8"></i></div>
+              <a class="link-mono" id="track-link" href="#" target="_blank" rel="noopener" hidden>open ↗</a>
+              <button class="icon-btn" id="ambience-toggle" type="button" aria-label="Toggle ambient audio" title="Ambience" aria-pressed="false">♪</button>
+            </div>
+          </div>
+          <div class="player-foot"><span id="track-state">—</span></div>
+        </section>
+
+      </div>
+    </div>
+
+    <div class="bottom-grid">
+      <!-- ------------------------------------------------------------ about -->
+      <section class="card about" id="about" aria-label="About me">
+        <div class="about-head"><span class="title">about me</span><span class="meta">01</span></div>
+        <div class="rule"></div>
+        <p class="about-text">building small interfaces, visual experiments and music-driven web spaces. quiet surfaces, strange details, things that feel alive.</p>
+        <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JS</span><span class="chip">MOTION</span></div>
+
+        <div class="top-artists">
+          <div class="ta-head"><span class="mini-title">top artists</span><span class="meta" id="artists-meta">7 days</span></div>
+          <div class="artists" id="artists-list"><div class="widget-empty"><span>NO SIGNAL</span></div></div>
+        </div>
+
+        <div class="about-links">
+          <a href="https://steamcommunity.com/id/shiokazeIII/" target="_blank" rel="noopener">STEAM ↗</a>
+          <a href="mailto:lopgg96@gmail.com" data-copy-email="lopgg96@gmail.com">MAIL ↗</a>
+          <a href="https://github.com/ShiokazeE" target="_blank" rel="noopener">GITHUB ↗</a>
+          <a href="https://shiokazee.github.io/bio/" target="_blank" rel="noopener">SITE ↗</a>
+        </div>
+
+        <figure class="char char-talia" data-name="talia">
+          <img src="assets/talia.webp" alt="" aria-hidden="true">
+          <div class="char-slot" aria-hidden="true"><span>TALIA</span></div>
+        </figure>
+      </section>
+
+      <!-- ------------------------------------------------ history / messages -->
+      <section class="card feeds" id="feeds" aria-label="History and messages">
+        <figure class="char char-lucy" data-name="lucy">
+          <img src="assets/lucy.webp" alt="" aria-hidden="true">
+          <div class="char-slot" aria-hidden="true"><span>LUCY</span></div>
+        </figure>
+        <div class="feeds-head">
+          <div class="tabs" role="tablist" aria-label="Feeds">
+            <span class="tab-glider" aria-hidden="true"></span>
+            <button class="tab is-active" id="tab-history" type="button" role="tab" aria-selected="true" aria-controls="panel-history" data-tab="history">history</button>
+            <button class="tab" id="tab-messages" type="button" role="tab" aria-selected="false" aria-controls="panel-messages" data-tab="messages">messages <span class="tab-count" id="gb-count">0</span></button>
+          </div>
+          <div class="feeds-side">
+            <span class="meta" id="feeds-meta">last.fm</span>
+            <button type="button" class="owner-open" id="owner-login-open" title="Owner tools" aria-label="Owner tools">⚙</button>
+          </div>
+        </div>
+        <div class="rule"></div>
+
+        <div class="panels">
+          <div class="panel" id="panel-history" role="tabpanel" aria-labelledby="tab-history">
+            <div class="hist" id="history-list"><div class="widget-empty"><span>NO SIGNAL</span></div></div>
+          </div>
+
+          <div class="panel" id="panel-messages" role="tabpanel" aria-labelledby="tab-messages" hidden>
+            <div class="gb-list" id="gb-list" aria-live="polite" aria-atomic="false"><div class="gb-empty">LOADING TRANSMISSIONS...</div></div>
+            <form class="message-form" id="guestbook-form">
+              <input id="gb-name-input" maxlength="32" autocomplete="name" placeholder="your name" aria-label="Name" inputmode="text" enterkeyhint="next">
+              <input id="gb-message" maxlength="160" autocomplete="off" placeholder="write a message..." aria-label="Message" inputmode="text" enterkeyhint="send">
+              <input id="gb-website" class="honeypot" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <button type="submit" id="gb-submit">SEND ↗</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">SIGNAL SENT</div>
+  </main>
+
+  <div id="console-overlay" aria-hidden="true">
+    <div id="console-head">
+      <span>SVCURA / TERMINAL</span>
+      <span class="dash"><i></i><i></i><i></i></span>
+    </div>
+    <div id="console-output"></div>
+    <div id="console-input-row">
+      <span>&gt;</span>
+      <input id="console-input" type="text" autocomplete="off" spellcheck="false" placeholder="type a command... (help)">
+    </div>
+    <div id="console-hint">~ OR ESC TO CLOSE · TYPE "HELP" FOR COMMANDS</div>
+  </div>
+</div>
+
+<div id="cursor-ring" aria-hidden="true"><span class="cursor-dot"></span><span class="cursor-glyph"></span></div>
+<div id="cursor-trail" aria-hidden="true"></div>
+
+<div class="owner-modal" id="owner-modal" hidden>
+  <div class="owner-modal__backdrop" data-owner-close></div>
+  <form class="owner-modal__panel" id="owner-login-form" autocomplete="on">
+    <div class="owner-modal__head"><span>OWNER ACCESS</span><button type="button" data-owner-close aria-label="Close">×</button></div>
+    <input id="author-email" type="email" autocomplete="username" placeholder="email" required>
+    <input id="author-password" type="password" autocomplete="current-password" placeholder="password" required>
+    <button type="submit">ENTER</button>
+    <button type="button" class="owner-logout" id="author-logout" hidden>LOG OUT</button>
+    <div class="owner-session" id="author-session" hidden>OWNER MODE ACTIVE</div>
+    <div class="owner-error" id="author-login-error" role="alert"></div>
+  </form>
+</div>
+
+<audio id="audio" preload="metadata" playsinline>
+  <source src="assets/murasame.mp3" type="audio/mpeg">
+</audio>
+
+<script src="js/app.js"></script>
+</body>
+</html>
