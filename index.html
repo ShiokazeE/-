@@ -59,10 +59,22 @@
         <div class="profile-sub">digital creator · web / motion / sound</div>
         <div class="profile-author"><span>author</span><strong>svcura</strong></div>
 
-        <div class="presence">
-          <span class="status-dot" id="dc-status" aria-hidden="true"></span>
-          <span class="dc-name" id="dc-name">shiokaze</span>
-          <span class="dc-online" id="dc-activity">checking presence…</span>
+        <div class="presence" id="discord-presence" data-status="connecting" aria-label="Discord activity">
+          <div class="dc-avatar-wrap">
+            <img class="dc-avatar" id="dc-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="" loading="eager" decoding="async">
+            <span class="status-dot" id="dc-status" aria-hidden="true"></span>
+          </div>
+          <div class="presence-copy">
+            <div class="presence-head">
+              <span class="dc-name" id="dc-name">shiokaze</span>
+              <span class="dc-status-label" id="dc-status-label">CONNECTING</span>
+            </div>
+            <div class="dc-activity-row" aria-live="polite">
+              <span class="dc-activity-marker" id="dc-activity-marker" aria-hidden="true">↳</span>
+              <span class="dc-online" id="dc-activity">checking Discord activity…</span>
+            </div>
+            <div class="dc-activity-detail" id="dc-activity-detail" hidden></div>
+          </div>
         </div>
 
         <div class="profile-foot">
@@ -128,7 +140,7 @@
         </div>
 
         <figure class="char char-talia" data-name="talia">
-          <img src="assets/talia.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <img src="assets/talia.webp" alt="" aria-hidden="true" loading="eager" decoding="async">
           <div class="char-slot" aria-hidden="true"><span>TALIA</span></div>
         </figure>
       </section>
