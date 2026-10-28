@@ -600,11 +600,33 @@ input, textarea {
 .profile-author span{font:600 8px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
 .profile-author strong{font:600 9px/1 var(--mono);letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
 
-.presence{position:relative;z-index:2;margin-top:14px;display:flex;align-items:center;gap:7px;min-width:0}
-.presence .status-dot{margin-left:0;width:7px;height:7px}
-.dc-name{font:600 10.5px/1 var(--mono);color:rgba(47,50,52,.76)}
-.dc-online{font:500 9px/1.2 var(--mono);color:var(--faint);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
-.dc-online:before{content:"· ";opacity:.5}
+.presence{position:relative;z-index:2;margin-top:12px;display:flex;align-items:center;gap:10px;min-width:0;width:100%}
+.dc-avatar-wrap{position:relative;flex:none;width:36px;height:36px}
+.dc-avatar{display:block;width:36px;height:36px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.76);background:rgba(255,255,255,.18);box-shadow:0 5px 14px rgba(35,40,42,.08)}
+.dc-avatar-wrap .status-dot{position:absolute;right:-3px;bottom:-3px;width:10px;height:10px;margin:0;border:2px solid #eef0ee;box-shadow:none}
+.dc-avatar-wrap .status-dot.online{background:#5a9b70;box-shadow:0 0 0 3px rgba(90,155,112,.10)}
+.dc-avatar-wrap .status-dot.idle{background:#b59550}
+.dc-avatar-wrap .status-dot.dnd{background:#b65b5b}
+.dc-avatar-wrap .status-dot.offline{background:#8a8f8b}
+.presence-copy{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.presence-head{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0}
+.dc-name{font:600 10.5px/1 var(--mono);color:rgba(47,50,52,.80);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.dc-status-label{flex:none;padding:4px 6px;border:1px solid rgba(47,50,52,.10);border-radius:5px;background:rgba(255,255,255,.16);font:600 7px/1 var(--mono);letter-spacing:.08em;color:rgba(47,50,52,.50)}
+.presence[data-status="online"] .dc-status-label{color:#4c8b60;border-color:rgba(76,139,96,.20)}
+.presence[data-status="idle"] .dc-status-label{color:#9a7839;border-color:rgba(181,149,80,.22)}
+.presence[data-status="dnd"] .dc-status-label{color:#a14f4f;border-color:rgba(182,91,91,.22)}
+.dc-activity-row{display:flex;align-items:center;gap:5px;min-width:0}
+.dc-activity-marker{flex:none;font:600 9px/1 var(--mono);color:rgba(47,50,52,.48)}
+.dc-online{display:block;flex:1;min-width:0;font:500 9px/1.25 var(--mono);color:rgba(47,50,52,.68);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc-activity-detail{font:500 8px/1.2 var(--mono);color:rgba(47,50,52,.48);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.dc-activity-detail[hidden]{display:none}
+body.theme-dark .dc-avatar{border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.06)}
+body.theme-dark .dc-avatar-wrap .status-dot{border-color:#17191b}
+body.theme-dark .dc-name{color:rgba(230,232,230,.88)}
+body.theme-dark .dc-status-label{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.10);color:rgba(230,232,230,.52)}
+body.theme-dark .dc-activity-marker{color:rgba(230,232,230,.46)}
+body.theme-dark .dc-online{color:rgba(230,232,230,.78)}
+body.theme-dark .dc-activity-detail{color:rgba(230,232,230,.48)}
 
 .profile-foot{position:relative;z-index:2;margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
 .mini-stats{display:flex;gap:12px;font:500 8px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
@@ -718,9 +740,9 @@ input, textarea {
 .char-asuka img{position:relative;z-index:1;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 8px 14px rgba(12,15,18,.18));image-rendering:auto}
 .char-asuka .char-slot{display:none}
 
-/* Талия — за текстом в карточке about */
-.char-talia{right:-72px;bottom:-26px;width:250px;height:392px;z-index:0}
-.char-talia img{opacity:.14}
+/* Талия — заметный, но приглушённый слой позади блока Top Artists */
+.char-talia{right:-38px;bottom:-24px;width:238px;height:372px;z-index:0;overflow:hidden}
+.char-talia img{opacity:.27;object-position:center bottom;filter:saturate(.78) contrast(.97) drop-shadow(0 8px 20px rgba(35,25,35,.10))}
 .char-talia .char-slot{opacity:.42}
 .char-talia .char-slot{border-color:rgba(214,62,160,.2)}
 .char-talia .char-slot::after{background:linear-gradient(to top,rgba(214,62,160,.18),transparent)}
@@ -755,7 +777,7 @@ body.theme-dark .char-slot span{color:rgba(230,232,230,.3)}
 /* ---------- responsive ---------- */
 @media (max-width:1180px){
   .top-grid,.bottom-grid{gap:16px}
-  .char-talia{width:150px;height:260px}
+  .char-talia{right:-26px;width:205px;height:330px;bottom:-22px}
   .char-asuka{right:3%;width:180px;height:380px;top:-176px}
 }
 @media (max-width:900px){
@@ -930,3 +952,198 @@ button:disabled{opacity:.55;cursor:not-allowed}
   .theme-toggle{padding:6px 7px;font-size:8px}
 }
 @media (prefers-reduced-motion:reduce){.theme-toggle{transition:none}.char-asuka img{filter:none}}
+
+
+/* Hard size boundary for the Discord avatar. Keep this last in the stylesheet. */
+#discord-presence .dc-avatar-wrap {
+  position: relative !important;
+  display: block !important;
+  flex: 0 0 36px !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  max-width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+  overflow: hidden !important;
+  line-height: 0 !important;
+  border-radius: 10px !important;
+}
+#discord-presence img.dc-avatar {
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  max-width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  object-fit: cover !important;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 10px !important;
+}
+#discord-presence .dc-avatar-wrap .status-dot {
+  position: absolute !important;
+  z-index: 2 !important;
+  right: -1px !important;
+  bottom: -1px !important;
+  width: 10px !important;
+  height: 10px !important;
+  min-width: 10px !important;
+  min-height: 10px !important;
+  margin: 0 !important;
+}
+
+/* Final compact Discord widget fit: intentionally appended after all prior rules. */
+#discord-presence {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  margin-top: 9px !important;
+  overflow: hidden !important;
+}
+#discord-presence .dc-avatar-wrap {
+  position: relative !important;
+  display: block !important;
+  flex: 0 0 28px !important;
+  width: 28px !important;
+  min-width: 28px !important;
+  max-width: 28px !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  max-height: 28px !important;
+  overflow: hidden !important;
+  line-height: 0 !important;
+  border-radius: 8px !important;
+}
+#discord-presence img.dc-avatar {
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 28px !important;
+  min-width: 28px !important;
+  max-width: 28px !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  max-height: 28px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  object-fit: cover !important;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 8px !important;
+}
+#discord-presence .dc-avatar-wrap .status-dot {
+  position: absolute !important;
+  z-index: 2 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 8px !important;
+  height: 8px !important;
+  min-width: 8px !important;
+  min-height: 8px !important;
+  margin: 0 !important;
+  border: 1.5px solid #eef0ee !important;
+  box-shadow: none !important;
+}
+#discord-presence .presence-copy {
+  display: flex !important;
+  flex: 1 1 0% !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+  width: 0 !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+#discord-presence .presence-head {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 6px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+#discord-presence .dc-name {
+  display: block !important;
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  font-size: 9px !important;
+  line-height: 1.2 !important;
+}
+/* The legacy script does not refresh this extra badge, so hide the stale CONNECTING label. */
+#discord-presence .dc-status-label { display: none !important; }
+#discord-presence .dc-activity-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+#discord-presence .dc-activity-marker {
+  flex: 0 0 auto !important;
+  font-size: 8px !important;
+  line-height: 1 !important;
+}
+#discord-presence .dc-online {
+  display: block !important;
+  flex: 1 1 auto !important;
+  width: 0 !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  font-size: 8px !important;
+  line-height: 1.2 !important;
+}
+#discord-presence .dc-activity-detail {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  font-size: 7.5px !important;
+  line-height: 1.2 !important;
+}
+#discord-presence .dc-activity-detail[hidden] { display: none !important; }
+body.theme-dark #discord-presence .dc-avatar-wrap .status-dot {
+  border-color: #17191b !important;
+}
+@media (max-width: 520px) {
+  #discord-presence { gap: 7px !important; margin-top: 8px !important; }
+  #discord-presence .dc-avatar-wrap {
+    flex-basis: 24px !important;
+    width: 24px !important;
+    min-width: 24px !important;
+    max-width: 24px !important;
+    height: 24px !important;
+    min-height: 24px !important;
+    max-height: 24px !important;
+    border-radius: 7px !important;
+  }
+  #discord-presence img.dc-avatar {
+    width: 24px !important;
+    min-width: 24px !important;
+    max-width: 24px !important;
+    height: 24px !important;
+    min-height: 24px !important;
+    max-height: 24px !important;
+    border-radius: 7px !important;
+  }
+  #discord-presence .dc-name { font-size: 8.5px !important; }
+  #discord-presence .dc-online { font-size: 7.5px !important; }
+}
