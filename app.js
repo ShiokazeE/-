@@ -767,6 +767,7 @@
   /* =========================================================
      DISCORD PRESENCE — profile avatar, status and rich activity
      ========================================================= */
+  var dcAvatar = $('dc-avatar');
   var dcName = $('dc-name');
   var dcActivity = $('dc-activity');
   var dcActivityDetail = $('dc-activity-detail');
@@ -810,7 +811,16 @@
       })
       .then(function(json){
         clearTimeout(timeout);
-        if(!json || json.success !== true || !json.data) throw new Error('presence response missing data');
+        if(!json) throw new Error('presence response missing data');
+        if(json.success !== true || !json.data){
+          var code = json.error && (json.error.code || json.error.error);
+          if(code === 'user_not_monitored'){
+            var notMonitored = new Error('user_not_monitored');
+            notMonitored.code = code;
+            throw notMonitored;
+          }
+          throw new Error('presence response missing data');
+        }
         return json.data;
       }, function(err){
         clearTimeout(timeout);
@@ -829,6 +839,16 @@
   function renderDiscordPresence(data){
     var user = data.discord_user || {};
     dcName.textContent = user.global_name || user.username || 'shiokaze';
+
+    if(dcAvatar){
+      dcAvatar.onerror = function(){
+        dcAvatar.onerror = null;
+        dcAvatar.src = 'https://cdn.discordapp.com/embed/avatars/0.png';
+      };
+      dcAvatar.src = user.avatar
+        ? 'https://cdn.discordapp.com/avatars/' + CONFIG.discord.id + '/' + user.avatar + '.' + (user.avatar.indexOf('a_') === 0 ? 'gif' : 'webp') + '?size=96'
+        : 'https://cdn.discordapp.com/embed/avatars/0.png';
+    }
 
     var status = data.discord_status || 'offline';
     setDiscordStatus(status);
@@ -882,9 +902,15 @@
     readLanyard(primaryUrl)
       .catch(function(){ return readLanyard(backupUrl); })
       .then(function(data){ renderDiscordPresence(data); })
-      .catch(function(){
+      .catch(function(err){
         setDiscordStatus('offline');
-        setDiscordActivity('Presence unavailable', 'Could not reach the Discord status service', '×');
+        if(err && err.code === 'user_not_monitored'){
+          setDiscordActivity('Join Lanyard server', 'Join discord.gg/lanyard and verify the Discord ID', '!');
+        }else if(err && err.name === 'AbortError'){
+          setDiscordActivity('Discord request timed out', 'The presence service did not respond in time', '×');
+        }else{
+          setDiscordActivity('Presence unavailable', 'Check the status service or Discord ID', '×');
+        }
       });
   }
 
