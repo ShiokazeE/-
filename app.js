@@ -767,7 +767,6 @@
   /* =========================================================
      DISCORD PRESENCE — profile avatar, status and rich activity
      ========================================================= */
-  var dcAvatar = $('dc-avatar');
   var dcName = $('dc-name');
   var dcActivity = $('dc-activity');
   var dcActivityDetail = $('dc-activity-detail');
@@ -830,16 +829,6 @@
   function renderDiscordPresence(data){
     var user = data.discord_user || {};
     dcName.textContent = user.global_name || user.username || 'shiokaze';
-
-    if(dcAvatar){
-      dcAvatar.onerror = function(){
-        dcAvatar.onerror = null;
-        dcAvatar.src = 'https://cdn.discordapp.com/embed/avatars/0.png';
-      };
-      dcAvatar.src = user.avatar
-        ? 'https://cdn.discordapp.com/avatars/' + CONFIG.discord.id + '/' + user.avatar + '.' + (user.avatar.indexOf('a_') === 0 ? 'gif' : 'webp') + '?size=96'
-        : 'https://cdn.discordapp.com/embed/avatars/0.png';
-    }
 
     var status = data.discord_status || 'offline';
     setDiscordStatus(status);
