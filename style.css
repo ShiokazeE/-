@@ -952,3 +952,47 @@ button:disabled{opacity:.55;cursor:not-allowed}
   .theme-toggle{padding:6px 7px;font-size:8px}
 }
 @media (prefers-reduced-motion:reduce){.theme-toggle{transition:none}.char-asuka img{filter:none}}
+
+
+/* Hard size boundary for the Discord avatar. Keep this last in the stylesheet. */
+#discord-presence .dc-avatar-wrap {
+  position: relative !important;
+  display: block !important;
+  flex: 0 0 36px !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  max-width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+  overflow: hidden !important;
+  line-height: 0 !important;
+  border-radius: 10px !important;
+}
+#discord-presence img.dc-avatar {
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 36px !important;
+  min-width: 36px !important;
+  max-width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  object-fit: cover !important;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 10px !important;
+}
+#discord-presence .dc-avatar-wrap .status-dot {
+  position: absolute !important;
+  z-index: 2 !important;
+  right: -1px !important;
+  bottom: -1px !important;
+  width: 10px !important;
+  height: 10px !important;
+  min-width: 10px !important;
+  min-height: 10px !important;
+  margin: 0 !important;
+}
