@@ -597,7 +597,16 @@
   async function loadMessages() {
     try {
       const fields = 'id,name,contact,message,created_at,author_liked,author_reply,author_reply_at';
-      const data = await api('/rest/v1/guestbook_comments?select=' + fields + '&order=created_at.desc&limit=50');
+      let data;
+      try {
+        data = await api('/rest/v1/guestbook_comments?select=' + fields + '&order=created_at.desc&limit=50');
+      } catch {
+        // Keep compatibility with the earlier table schema where reply columns may not exist.
+        data = await api('/rest/v1/guestbook_comments?select=id,name,contact,message,created_at,author_liked&order=created_at.desc&limit=50');
+        if (Array.isArray(data)) {
+          data = data.map((item) => ({ ...item, author_reply: null, author_reply_at: null }));
+        }
+      }
       state.messages = Array.isArray(data) ? data : [];
       state.guestbookLoaded = true;
       renderMessages();
