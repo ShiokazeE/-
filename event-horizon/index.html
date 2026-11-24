@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050608">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Shiokaze — a personal space beyond the event horizon.">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="SHIOKAZE — EVENT HORIZON">
+  <meta property="og:description" content="A personal space beyond the event horizon.">
+  <meta property="og:image" content="../assets/avatar.jpg">
+  <title>SHIOKAZE — EVENT HORIZON</title>
+  <link rel="icon" href="../assets/favicon.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body class="is-locked">
+  <canvas id="universe" aria-hidden="true"></canvas>
+  <div class="scene-vignette" aria-hidden="true"></div>
+
+  <div class="entry-layer" id="entry-layer" role="dialog" aria-modal="true" aria-label="Enter the observatory">
+    <div class="entry-mark"><span></span><span></span><span></span></div>
+    <div class="entry-copy">
+      <p class="eyebrow">SHIOKAZE OBSERVATORY <span>—</span> 001</p>
+      <h1>THE SIGNAL<br><em>IS WAITING.</em></h1>
+      <p class="entry-note">A small space at the edge of everything.</p>
+      <button class="enter-button" id="enter-button" type="button">
+        <span>ENTER ORBIT</span><i aria-hidden="true">↗</i>
+      </button>
+      <p class="entry-foot">SOUND ENABLES AFTER ENTRY · 15% OUTPUT</p>
+    </div>
+    <div class="entry-coordinate">51° 30' 26.4" N<br>UNKNOWN SECTOR</div>
+    <div class="entry-line" aria-hidden="true"></div>
+  </div>
+
+  <main id="observatory">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Shiokaze observatory home">
+        <span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span><strong>SHIOKAZE</strong><small>PERSONAL OBSERVATORY</small></span>
+      </a>
+      <div class="topbar-right">
+        <div class="clock-block">
+          <span class="tiny-label" id="timezone">LOCAL TIME</span>
+          <time id="clock">00:00:00</time>
+        </div>
+        <button class="sound-button" id="sound-toggle" type="button" aria-pressed="false" title="Toggle ambient audio">
+          <span class="sound-icon" aria-hidden="true">♫</span><span id="sound-label">SOUND OFF</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="scene-caption">
+      <span class="caption-index">FIELD NOTE / 001</span>
+      <span class="caption-rule"></span>
+      <span class="caption-text">AN OBJECT OF CURIOUS GRAVITY</span>
+    </div>
+
+    <section class="hero" aria-label="Shiokaze profile">
+      <div class="hero-kicker"><span class="live-dot"></span> SYSTEM ONLINE <span class="hero-kicker-muted">· PERSONAL SPACE</span></div>
+      <h2>SHIOKAZE</h2>
+      <p class="hero-description">Somewhere between <span>code</span>, sound<br>and other worlds.</p>
+      <div class="hero-divider"></div>
+      <div class="hero-foot">
+        <span>NO FIXED COORDINATES</span>
+        <span>SCROLL NOT REQUIRED</span>
+      </div>
+    </section>
+
+    <div class="blackhole-label" aria-hidden="true">
+      <span class="label-line"></span>
+      <span>EVENT HORIZON</span>
+      <span class="label-sub">R = 2GM / C²</span>
+    </div>
+
+    <nav class="orbit-nav" aria-label="Explore the observatory">
+      <button class="orbit-node node-identity" type="button" data-module="identity" aria-controls="module-panel">
+        <span class="node-number">01</span><span class="node-text"><strong>IDENTITY</strong><small>WHO IS HERE</small></span><i aria-hidden="true">↗</i>
+      </button>
+      <button class="orbit-node node-signal" type="button" data-module="signal" aria-controls="module-panel">
+        <span class="node-number">02</span><span class="node-text"><strong>SIGNAL</strong><small>NOW PLAYING / STATUS</small></span><i aria-hidden="true">↗</i>
+      </button>
+      <button class="orbit-node node-transmissions" type="button" data-module="transmissions" aria-controls="module-panel">
+        <span class="node-number">03</span><span class="node-text"><strong>TRANSMISSIONS</strong><small>LEAVE A MESSAGE</small></span><i aria-hidden="true">↗</i>
+      </button>
+      <button class="orbit-node node-network" type="button" data-module="network" aria-controls="module-panel">
+        <span class="node-number">04</span><span class="node-text"><strong>NETWORK</strong><small>FIND ME ELSEWHERE</small></span><i aria-hidden="true">↗</i>
+      </button>
+    </nav>
+
+    <footer class="bottom-bar">
+      <div class="visit-stat"><span class="tiny-label">OBSERVERS</span><strong id="visit-count">—</strong></div>
+      <div class="rating-block">
+        <span class="tiny-label">RATE THIS SPACE</span>
+        <div class="rating-stars" id="rating-stars" role="radiogroup" aria-label="Rate this site">
+          <button type="button" data-rating="1" role="radio" aria-checked="false" aria-label="1 star">✳</button>
+          <button type="button" data-rating="2" role="radio" aria-checked="false" aria-label="2 stars">✳</button>
+          <button type="button" data-rating="3" role="radio" aria-checked="false" aria-label="3 stars">✳</button>
+          <button type="button" data-rating="4" role="radio" aria-checked="false" aria-label="4 stars">✳</button>
+          <button type="button" data-rating="5" role="radio" aria-checked="false" aria-label="5 stars">✳</button>
+        </div>
+        <span class="rating-average" id="rating-value">—</span>
+      </div>
+      <div class="bottom-note">YOU ARE NOT AT THE CENTRE OF THE UNIVERSE.<br>YOU ARE AT THE CENTRE OF THIS PAGE.</div>
+    </footer>
+
+    <div class="panel-backdrop" id="panel-backdrop"></div>
+    <aside class="module-panel" id="module-panel" aria-live="polite" aria-label="Observatory module" hidden>
+      <div class="panel-heading">
+        <div><span class="panel-kicker" id="panel-kicker">01 / IDENTITY</span><h3 id="panel-title">IDENTITY</h3></div>
+        <button class="panel-close" id="panel-close" type="button" aria-label="Close module">×</button>
+      </div>
+      <div class="panel-content" id="panel-content"></div>
+    </aside>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+
+  <template id="identity-template">
+    <div class="identity-card">
+      <div class="identity-top">
+        <img class="identity-avatar" src="../assets/avatar.jpg" alt="Shiokaze avatar">
+        <div><span class="tiny-label">SUBJECT / 001</span><h4>SHIOKAZE</h4><p class="identity-role">INDEPENDENT DIGITAL EXPLORER</p></div>
+      </div>
+      <p class="module-lead">I build things, explore strange systems, modify virtual worlds and collect sounds that feel like memories.</p>
+      <div class="identity-facts">
+        <div><span>LOCAL TIME</span><strong id="identity-clock">—</strong></div>
+        <div><span>TIMEZONE</span><strong id="identity-timezone">—</strong></div>
+        <div><span>STATUS</span><strong><i class="mini-live"></i> SOMEWHERE ONLINE</strong></div>
+      </div>
+      <div class="module-section-title">A FEW THINGS I RETURN TO</div>
+      <div class="interest-list"><span>GAME MODDING</span><span>WEB EXPERIMENTS</span><span>MAPS & SYSTEMS</span><span>MUSIC</span></div>
+    </div>
+  </template>
+
+  <template id="signal-template">
+    <div class="signal-card">
+      <div class="signal-section">
+        <div class="module-section-title">DISCORD PRESENCE <span class="source-label">LIVE</span></div>
+        <div class="discord-row">
+          <div class="discord-avatar-wrap"><img id="discord-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt=""><span id="discord-status-dot"></span></div>
+          <div class="discord-copy"><strong id="discord-name">Shiokaze</strong><span id="discord-status">CONNECTING</span><p id="discord-activity">Waiting for signal…</p></div>
+        </div>
+      </div>
+      <div class="signal-section">
+        <div class="module-section-title"><span id="music-state">LAST LISTENED</span><span class="source-label">LISTENBRAINZ</span></div>
+        <div class="track-feature">
+          <div class="track-art" id="track-art"><span>♪</span></div>
+          <div class="track-copy"><strong id="track-title">Waiting for a track…</strong><span id="track-artist">—</span><small id="track-album"></small><a id="track-link" href="#" target="_blank" rel="noopener" hidden>OPEN RECORDING ↗</a></div>
+        </div>
+      </div>
+      <div class="signal-section">
+        <div class="module-section-title">RECENT ROTATION <span class="source-label">@SH10KAZE</span></div>
+        <div class="listening-list" id="listening-list"><div class="empty-line">COLLECTING LISTENS…</div></div>
+      </div>
+      <div class="signal-section">
+        <div class="module-section-title">REPEATED FREQUENCIES</div>
+        <div class="artist-list" id="artist-list"><div class="empty-line">NO DATA YET</div></div>
+      </div>
+    </div>
+  </template>
+
+  <template id="transmissions-template">
+    <div class="transmissions-card">
+      <p class="module-lead">A message sent from your side of the horizon. Keep it short; I will read it.</p>
+      <div class="transmission-list" id="guestbook-list"><div class="empty-line">LOADING TRANSMISSIONS…</div></div>
+      <form class="transmission-form" id="guestbook-form">
+        <label for="guest-name">YOUR CALLSIGN</label>
+        <input id="guest-name" name="name" maxlength="32" autocomplete="name" placeholder="anonymous">
+        <label for="guest-message">MESSAGE</label>
+        <textarea id="guest-message" name="message" maxlength="160" rows="3" placeholder="Send a transmission…" required></textarea>
+        <input id="guest-website" class="honeypot" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="form-bottom"><span>MAX 160 CHARACTERS</span><button type="submit" id="guest-submit">SEND TRANSMISSION ↗</button></div>
+      </form>
+      <div class="owner-row"><span>ARE YOU THE OPERATOR?</span><button type="button" id="owner-open">OWNER ACCESS ↗</button></div>
+    </div>
+  </template>
+
+  <template id="network-template">
+    <div class="network-card">
+      <p class="module-lead">Other places where parts of this signal can be found.</p>
+      <a class="network-link" href="https://github.com/ShiokazeE" target="_blank" rel="noopener"><span class="network-index">01</span><span><strong>GITHUB</strong><small>CODE / PROJECTS / EXPERIMENTS</small></span><i>↗</i></a>
+      <a class="network-link" href="https://steamcommunity.com/id/shiokazeIII/" target="_blank" rel="noopener"><span class="network-index">02</span><span><strong>STEAM</strong><small>GAMES / WORKSHOP / WORLDS</small></span><i>↗</i></a>
+      <a class="network-link" href="mailto:lopgg96@gmail.com"><span class="network-index">03</span><span><strong>EMAIL</strong><small>DIRECT TRANSMISSION</small></span><i>↗</i></a>
+      <button class="copy-address" id="copy-address" type="button" data-email="lopgg96@gmail.com">COPY EMAIL ADDRESS</button>
+      <div class="network-foot">NO TRACKERS. NO MARKETING. JUST A FEW LINKS.</div>
+    </div>
+  </template>
+
+  <div class="owner-modal" id="owner-modal" hidden>
+    <div class="owner-backdrop" data-owner-close></div>
+    <form class="owner-panel" id="owner-form" autocomplete="on">
+      <div class="owner-head"><span>OPERATOR ACCESS</span><button type="button" data-owner-close aria-label="Close">×</button></div>
+      <input id="owner-email" type="email" autocomplete="username" placeholder="email" required>
+      <input id="owner-password" type="password" autocomplete="current-password" placeholder="password" required>
+      <button class="owner-submit" type="submit">AUTHENTICATE ↗</button>
+      <button class="owner-logout" id="owner-logout" type="button" hidden>END SESSION</button>
+      <p id="owner-session" hidden>OPERATOR SESSION ACTIVE</p>
+      <div class="owner-error" id="owner-error" role="alert"></div>
+    </form>
+  </div>
+
+  <audio id="ambience" preload="none" loop playsinline>
+    <source src="../assets/murasame.mp3" type="audio/mpeg">
+  </audio>
+</body>
+</html>
