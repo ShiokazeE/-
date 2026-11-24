@@ -358,6 +358,7 @@
   };
 
   let lastOpenedModule = 'identity';
+  let panelCloseTimer = 0;
 
   function openModule(name) {
     const meta = moduleMeta[name];
@@ -366,6 +367,7 @@
     const content = $('panel-content');
     if (!panel || !content) return;
 
+    window.clearTimeout(panelCloseTimer);
     state.activeModule = name;
     lastOpenedModule = name;
     setText('panel-kicker', meta.number + ' / ' + meta.title);
@@ -396,7 +398,8 @@
     if (!panel || panel.hidden) return;
     body.classList.remove('module-open');
     state.activeModule = null;
-    window.setTimeout(() => { panel.hidden = true; }, 370);
+    window.clearTimeout(panelCloseTimer);
+    panelCloseTimer = window.setTimeout(() => { panel.hidden = true; }, 370);
     document.querySelector('[data-module="' + lastOpenedModule + '"]')?.focus();
   }
 
